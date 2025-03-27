@@ -81,15 +81,15 @@ export default function SelectorOpciones() {
       {mostrarOpciones && (
         <>
           {Object.entries(opciones).map(([grupo, opcionesGrupo]) => (
-            <div key={grupo} className="border p-5 rounded-2xl shadow-md bg-gray-50">
-              <h2 className="text-lg font-semibold mb-3 text-gray-800">{grupo}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div key={grupo} className="border p-6 rounded-2xl shadow-md bg-gray-50 space-y-4">
+              <h2 className="text-lg font-semibold text-gray-800">{grupo}</h2>
+              <div className="flex flex-wrap gap-3">
                 {opcionesGrupo.map(opcion => (
                   <button
                     key={opcion}
                     onClick={() => handleSeleccion(grupo, opcion)}
-                    className={`p-4 rounded-xl text-sm transition-all duration-150 ${
-                      seleccionadas[grupo] === opcion ? 'border-2 border-black bg-white shadow-sm scale-105' : 'border border-gray-300 hover:bg-white'
+                    className={`px-4 py-2 rounded-full text-sm transition-all duration-150 ${
+                      seleccionadas[grupo] === opcion ? 'bg-black text-white shadow' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                     }`}
                   >
                     {opcion}
