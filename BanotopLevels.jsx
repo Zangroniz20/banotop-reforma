@@ -120,7 +120,17 @@ const BanotopLevels = () => {
           Superficie: {superficie.toFixed(2)} m²<br />
           Presupuesto estimado: {precio.toFixed(2)} €
         </p>
-      </div>
+      </div><div id="contacto">
+  <h2>¿Listo para empezar tu reforma?</h2>
+  <p>Déjanos tu número y te llamamos para ponernos en marcha:</p>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
+    <input type="tel" placeholder="Tu número de teléfono" />
+    <button onClick={() => alert("Gracias. ¡Nos pondremos en contacto contigo!")}>
+      ¡Empezar mi reforma!
+    </button>
+  </div>
+</div>
+
     </div>
   );
 };
