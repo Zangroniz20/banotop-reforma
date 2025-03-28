@@ -37,17 +37,6 @@ button.selected {
   transform: scale(1.05);
 }
 
-button:hover {
-  background-color: #eaeaea;
-  border-color: #999;
-}
-
-button.selected {
-  background-color: #222;
-  color: #fff;
-  border-color: #222;
-}
-
 input {
   padding: 0.5rem;
   font-size: 1rem;
