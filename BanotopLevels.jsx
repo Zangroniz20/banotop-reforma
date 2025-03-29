@@ -9,8 +9,6 @@ const BanotopLevels = () => {
   const [espejo, setEspejo] = useState(null);
   const [longitud, setLongitud] = useState(0);
   const [anchura, setAnchura] = useState(0);
-  const [telefono, setTelefono] = useState("");
-  const [enviado, setEnviado] = useState(false);
 
   const niveles = ["Esencial", "Confort", "Premium", "Signature"];
   const alicatados = ["Blanco brillo", "Porcelánico mate", "Mármol cerámico"];
@@ -31,132 +29,122 @@ const BanotopLevels = () => {
     "Signature": "/signature.jpg"
   };
 
-  const handleSubmit = () => {
-    if (telefono.trim()) {
-      setEnviado(true);
-    }
-  };
-
-  const renderBotones = (opciones, seleccionado, setSeleccionado) => (
-    <div className="flex flex-wrap gap-2 mb-4">
-      {opciones.map((op) => (
-        <button
-          key={op}
-          className={`px-4 py-2 rounded-full transition text-sm font-medium ${
-            seleccionado === op ? "bg-blue-600 text-white" : "bg-gray-200 hover:bg-gray-300"
-          }`}
-          onClick={() => setSeleccionado(op)}
-        >
-          {op}
-        </button>
-      ))}
-    </div>
-  );
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Empieza ahora la reforma de tu baño</h1>
+    <div>
+      <h1>Empieza ahora la reforma de tu baño</h1>
 
-      <h2 className="text-xl font-semibold mb-2">Nivel</h2>
+      <h2>Nivel</h2>
       {niveles.map((n) => (
-        <div key={n} className="mb-8">
+        <div key={n} style={{ marginBottom: '1.5rem' }}>
           <button
-            className={`px-4 py-2 rounded-full mr-2 mb-2 text-white ${nivel === n ? "bg-blue-600" : "bg-gray-400"}`}
+            className={nivel === n ? "selected" : ""}
             onClick={() => setNivel(n)}
           >
             {n}
           </button>
-          <div className="flex justify-center mt-2">
+          <div style={{ marginTop: '0.5rem' }}>
             <img
               src={imagenesNivel[n]}
               alt={`Baño nivel ${n}`}
-              className="w-[300px] h-auto rounded-xl shadow"
+              style={{ width: "100%", maxWidth: "400px", borderRadius: "10px" }}
             />
           </div>
         </div>
       ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Tipo de alicatado</h2>
-      {renderBotones(alicatados, tipoAlicatado, setTipoAlicatado)}
+      <h2>Tipo de alicatado</h2>
+      {alicatados.map((tipo) => (
+        <button
+          key={tipo}
+          className={tipoAlicatado === tipo ? "selected" : ""}
+          onClick={() => setTipoAlicatado(tipo)}
+        >
+          {tipo}
+        </button>
+      ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Plato de ducha</h2>
-      {renderBotones(platos, platoDucha, setPlatoDucha)}
+      <h2>Plato de ducha</h2>
+      {platos.map((p) => (
+        <button
+          key={p}
+          className={platoDucha === p ? "selected" : ""}
+          onClick={() => setPlatoDucha(p)}
+        >
+          {p}
+        </button>
+      ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Mampara</h2>
-      {renderBotones(mamparas, mampara, setMampara)}
+      <h2>Mampara</h2>
+      {mamparas.map((m) => (
+        <button
+          key={m}
+          className={mampara === m ? "selected" : ""}
+          onClick={() => setMampara(m)}
+        >
+          {m}
+        </button>
+      ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Mueble de baño</h2>
-      {renderBotones(muebles, mueble, setMueble)}
+      <h2>Mueble de baño</h2>
+      {muebles.map((m) => (
+        <button
+          key={m}
+          className={mueble === m ? "selected" : ""}
+          onClick={() => setMueble(m)}
+        >
+          {m}
+        </button>
+      ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Espejo</h2>
-      {renderBotones(espejos, espejo, setEspejo)}
+      <h2>Espejo</h2>
+      {espejos.map((e) => (
+        <button
+          key={e}
+          className={espejo === e ? "selected" : ""}
+          onClick={() => setEspejo(e)}
+        >
+          {e}
+        </button>
+      ))}
 
-      <h2 className="text-xl font-semibold mt-8 mb-2">Medidas del baño</h2>
-      <div className="flex flex-wrap gap-4 mb-6">
-        <input
-          type="number"
-          placeholder="Longitud (m)"
-          value={longitud}
-          onChange={(e) => setLongitud(parseFloat(e.target.value))}
-          className="border rounded p-2 w-40"
-        />
-        <input
-          type="number"
-          placeholder="Anchura (m)"
-          value={anchura}
-          onChange={(e) => setAnchura(parseFloat(e.target.value))}
-          className="border rounded p-2 w-40"
-        />
-      </div>
+      <h2>Medidas del baño</h2>
+      <input
+        type="number"
+        placeholder="Longitud (m)"
+        value={longitud}
+        onChange={(e) => setLongitud(parseFloat(e.target.value))}
+      />
+      <input
+        type="number"
+        placeholder="Anchura (m)"
+        value={anchura}
+        onChange={(e) => setAnchura(parseFloat(e.target.value))}
+      />
 
-      <div id="resumen" className="bg-gray-100 p-6 rounded-xl mb-6 shadow">
-        <h2 className="text-lg font-semibold mb-2 text-blue-700">Resumen de tu selección:</h2>
-        <ul className="space-y-1">
+      <div id="resumen">
+        <h2>Resumen de tu selección:</h2>
+        <ul>
           {nivel && <li><strong>Nivel:</strong> {nivel}</li>}
-          {tipoAlicatado && <li><strong>Alicatado:</strong> {tipoAlicatado}</li>}
           {platoDucha && <li><strong>Plato de ducha:</strong> {platoDucha}</li>}
           {mampara && <li><strong>Mampara:</strong> {mampara}</li>}
-          {mueble && <li><strong>Mueble:</strong> {mueble}</li>}
+          {mueble && <li><strong>Mueble de baño:</strong> {mueble}</li>}
           {espejo && <li><strong>Espejo:</strong> {espejo}</li>}
+          {tipoAlicatado && <li><strong>Tipo de alicatado:</strong> {tipoAlicatado}</li>}
         </ul>
-        <p className="mt-4 font-medium">
-          🧮 Superficie: {superficie.toFixed(2)} m²<br />
-          💰 Presupuesto estimado: {precio.toFixed(2)} €
-        </p>
-      </div>
-
-      <div id="contacto" className="mt-8">
-        <h2 className="text-xl font-semibold mb-2">¿Listo para empezar tu reforma?</h2>
-        <p className="mb-4">Déjanos tu número y te llamamos para ponernos en marcha:</p>
-        <div className="flex flex-wrap gap-2 items-center">
-          <input
-            type="tel"
-            placeholder="Tu número de teléfono"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
-            className="border border-gray-300 rounded px-4 py-2 w-64"
-          />
-          <button
-            onClick={handleSubmit}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded"
-          >
-            ¡Empezar mi reforma!
-          </button>
-        </div>
-        {enviado && (
-          <p className="text-green-600 mt-4 font-medium">✅ ¡Gracias! Nos pondremos en contacto contigo pronto.</p>
-        )}
-      </div>
-
-      <footer className="bg-gray-100 py-6 mt-12 border-t text-center text-sm text-gray-600">
         <p>
-          Bañotop es una marca especializada en reformas de baño, impulsada por{" "}
-          <a href="https://www.zangroniz.es" target="_blank" className="text-blue-600 hover:underline">
-            Zangroniz.es
-          </a>
+          Superficie: {superficie.toFixed(2)} m²<br />
+          Presupuesto estimado: {precio.toFixed(2)} €
         </p>
-        <p className="mt-1">© {new Date().getFullYear()} Bañotop. Todos los derechos reservados.</p>
-      </footer>
+      </div>
+
+      <div id="contacto">
+        <h2>¿Listo para empezar tu reforma?</h2>
+        <p>Déjanos tu número y te llamamos para ponernos en marcha:</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
+          <input type="tel" placeholder="Tu número de teléfono" />
+          <button onClick={() => alert("Gracias. ¡Nos pondremos en contacto contigo!")}>¡Empezar mi reforma!</button>
+        </div>
+      </div>
     </div>
   );
 };
