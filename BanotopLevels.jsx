@@ -31,7 +31,7 @@ const BanotopLevels = () => {
 
   return (
     <div>
-      <h1>Calcula tu reforma</h1>
+      <h1>Empieza ahora la reforma de tu baño</h1>
 
       <h2>Nivel</h2>
       {niveles.map((n) => (
