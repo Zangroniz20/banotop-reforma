@@ -22,19 +22,34 @@ const BanotopLevels = () => {
   const extraNivel = nivel ? niveles.indexOf(nivel) * 100 : 0;
   const precio = superficie * (base + extraNivel);
 
+  const imagenesNivel = {
+    "Esencial": "esencial.jpg",
+    "Confort": "confort.jpg",
+    "Premium": "premium.jpg",
+    "Signature": "signature.jpg"
+  };
+
   return (
     <div>
       <h1>Calcula tu reforma</h1>
 
       <h2>Nivel</h2>
       {niveles.map((n) => (
-        <button
-          key={n}
-          className={nivel === n ? "selected" : ""}
-          onClick={() => setNivel(n)}
-        >
-          {n}
-        </button>
+        <div key={n} style={{ marginBottom: '1.5rem' }}>
+          <button
+            className={nivel === n ? "selected" : ""}
+            onClick={() => setNivel(n)}
+          >
+            {n}
+          </button>
+          <div style={{ marginTop: '0.5rem' }}>
+            <img
+              src={`public/${imagenesNivel[n]}`}
+              alt={`Baño nivel ${n}`}
+              style={{ width: "100%", maxWidth: "400px", borderRadius: "10px" }}
+            />
+          </div>
+        </div>
       ))}
 
       <h2>Tipo de alicatado</h2>
@@ -120,17 +135,16 @@ const BanotopLevels = () => {
           Superficie: {superficie.toFixed(2)} m²<br />
           Presupuesto estimado: {precio.toFixed(2)} €
         </p>
-      </div><div id="contacto">
-  <h2>¿Listo para empezar tu reforma?</h2>
-  <p>Déjanos tu número y te llamamos para ponernos en marcha:</p>
-  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
-    <input type="tel" placeholder="Tu número de teléfono" />
-    <button onClick={() => alert("Gracias. ¡Nos pondremos en contacto contigo!")}>
-      ¡Empezar mi reforma!
-    </button>
-  </div>
-</div>
+      </div>
 
+      <div id="contacto">
+        <h2>¿Listo para empezar tu reforma?</h2>
+        <p>Déjanos tu número y te llamamos para ponernos en marcha:</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
+          <input type="tel" placeholder="Tu número de teléfono" />
+          <button onClick={() => alert("Gracias. ¡Nos pondremos en contacto contigo!")}>¡Empezar mi reforma!</button>
+        </div>
+      </div>
     </div>
   );
 };
