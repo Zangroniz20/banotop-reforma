@@ -23,10 +23,10 @@ const BanotopLevels = () => {
   const precio = superficie * (base + extraNivel);
 
   const imagenesNivel = {
-    "Esencial": "esencial.jpg",
-    "Confort": "confort.jpg",
-    "Premium": "premium.jpg",
-    "Signature": "signature.jpg"
+    "Esencial": "/esencial.jpg",
+    "Confort": "/confort.jpg",
+    "Premium": "/premium.jpg",
+    "Signature": "/signature.jpg"
   };
 
   return (
@@ -44,7 +44,7 @@ const BanotopLevels = () => {
           </button>
           <div style={{ marginTop: '0.5rem' }}>
             <img
-              src={`public/${imagenesNivel[n]}`}
+              src={imagenesNivel[n]}
               alt={`Baño nivel ${n}`}
               style={{ width: "100%", maxWidth: "400px", borderRadius: "10px" }}
             />
