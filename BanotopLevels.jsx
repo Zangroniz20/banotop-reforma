@@ -1,138 +1,120 @@
 import React, { useState } from "react";
 
 const BanotopLevels = () => {
-  const [nivelSeleccionado, setNivelSeleccionado] = useState(null);
-  const [selecciones, setSelecciones] = useState({});
+  const [nivel, setNivel] = useState(null);
+  const [materiales, setMateriales] = useState({});
   const [longitud, setLongitud] = useState(0);
   const [anchura, setAnchura] = useState(0);
 
-  const superficie = longitud * anchura;
-  const base = 500;
-  const extraNivel = nivelSeleccionado ? ["Esencial", "Confort", "Premium", "Signature"].indexOf(nivelSeleccionado) * 100 : 0;
-  const precio = superficie * (base + extraNivel);
-
   const niveles = ["Esencial", "Confort", "Premium", "Signature"];
-  const imagenesNivel = {
-    Esencial: "/esencial.jpg",
-    Confort: "/confort.jpg",
-    Premium: "/premium.jpg",
-    Signature: "/signature.jpg"
-  };
 
-  const materialesPorNivel = {
+  const opcionesMateriales = {
     Esencial: {
-      alicatado: ["Blanco brillo", "Beige básico", "Gris claro"],
-      plato: ["Cerámico blanco", "Cerámico beige"],
+      alicatado: ["Blanco brillo", "Beige satinado", "Gris claro"],
+      solado: ["Gres gris", "Madera cerámica", "Beige claro"],
+      plato: ["Cerámico blanco", "Resina básica", "Acrílico"],
+      mampara: ["Fija", "Corredera sencilla", "Abatible básica"],
+      mueble: ["Melamina blanco", "Con patas", "Compacto"],
+      espejo: ["Rectangular básico", "Sin marco", "Espejo liso"]
     },
     Confort: {
-      alicatado: ["Porcelánico mate", "Imitación madera", "Textura piedra"],
-      plato: ["Resina antideslizante", "Resina pizarra"],
+      alicatado: ["Porcelánico mate", "Textura cemento", "Color arena"],
+      solado: ["Imitación madera", "Gres técnico", "Cemento pulido"],
+      plato: ["Resina textura pizarra", "Cerámico antideslizante", "Color beige"],
+      mampara: ["Corredera doble", "Fija con perfil negro", "Abatible media"],
+      mueble: ["Suspendido con cajones", "Acabado madera", "Compacto con lavabo"],
+      espejo: ["Retroiluminado", "Con marco fino", "Espejo antivaho"]
     },
     Premium: {
-      alicatado: ["Mármol cerámico", "Textura cemento", "Imitación granito"],
-      plato: ["Resina pizarra", "Piedra natural clara"],
+      alicatado: ["Mármol cerámico", "Gran formato", "Diseño geométrico"],
+      solado: ["Madera natural", "Piedra cerámica", "Diseño exclusivo"],
+      plato: ["Piedra natural", "Resina personalizada", "Plato extraplano"],
+      mampara: ["Abatible con perfil dorado", "Corredera sin marco", "Fija con cristal serigrafiado"],
+      mueble: ["Doble seno", "Suspendido premium", "Madera natural"],
+      espejo: ["Espejo LED táctil", "Espejo redondo con luz", "Diseño orgánico"]
     },
     Signature: {
-      alicatado: ["Mármol auténtico", "Diseño exclusivo", "Custom a elegir"],
-      plato: ["Piedra natural negra", "Compuesto mineral deluxe"],
-    },
+      alicatado: ["Porcelánico italiano", "Textura piedra", "Acabado metálico"],
+      solado: ["Microcemento continuo", "Piedra volcánica", "Diseño exclusivo italiano"],
+      plato: ["Plato de mármol", "Diseño autor", "Resina premium"],
+      mampara: ["Cristal curvo", "Marco invisible", "Diseño exclusivo"],
+      mueble: ["Diseño autor suspendido", "Integrado con lavabo", "Acabado lujo"],
+      espejo: ["Espejo decorativo con luz", "Smart mirror", "Retroiluminado táctil"]
+    }
   };
 
-  const handleSeleccion = (categoria, valor) => {
-    setSelecciones((prev) => ({ ...prev, [categoria]: valor }));
+  const renderMateriales = () => {
+    if (!nivel) return null;
+    const materialesNivel = opcionesMateriales[nivel];
+    return Object.entries(materialesNivel).map(([tipo, opciones]) => (
+      <div key={tipo} className="mb-4">
+        <h2 className="text-lg font-semibold capitalize">{tipo}</h2>
+        <div className="flex flex-wrap gap-2">
+          {opciones.map((opcion) => (
+            <button
+              key={opcion}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+                materiales[tipo] === opcion
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 hover:bg-gray-300"
+              }`}
+              onClick={() => setMateriales({ ...materiales, [tipo]: opcion })}
+            >
+              {opcion}
+            </button>
+          ))}
+        </div>
+      </div>
+    ));
   };
+
+  const renderMedidas = () => (
+    <div className="mt-6">
+      <h2 className="text-lg font-semibold">Medidas del baño</h2>
+      <div className="flex flex-wrap gap-4 mt-2">
+        <input
+          type="number"
+          placeholder="Longitud (m)"
+          value={longitud}
+          onChange={(e) => setLongitud(parseFloat(e.target.value))}
+          className="border p-2 rounded w-40"
+        />
+        <input
+          type="number"
+          placeholder="Anchura (m)"
+          value={anchura}
+          onChange={(e) => setAnchura(parseFloat(e.target.value))}
+          className="border p-2 rounded w-40"
+        />
+      </div>
+    </div>
+  );
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {!nivelSeleccionado ? (
-        <>
-          <h1 className="text-3xl font-bold text-center mb-6">Selecciona el nivel de calidad</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {niveles.map((nivel) => (
-              <div key={nivel} className="text-center">
-                <button
-                  onClick={() => setNivelSeleccionado(nivel)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full mb-2"
-                >
-                  {nivel}
-                </button>
-                <img
-                  src={imagenesNivel[nivel]}
-                  alt={nivel}
-                  style={{ width: "200px", height: "auto" }}
-                  className="mx-auto rounded-xl shadow"
-                />
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <h1 className="text-2xl font-bold mb-4">Nivel seleccionado: {nivelSeleccionado}</h1>
+    <div className="max-w-4xl mx-auto px-4 py-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Selecciona el nivel de calidad</h1>
+      <div className="flex flex-wrap justify-center gap-4 mb-8">
+        {niveles.map((n) => (
+          <button
+            key={n}
+            onClick={() => setNivel(n)}
+            className={`px-6 py-3 rounded-full font-medium text-sm transition ${
+              nivel === n ? "bg-blue-600 text-white" : "bg-gray-200 hover:bg-gray-300"
+            }`}
+          >
+            {n}
+          </button>
+        ))}
+      </div>
 
-          <h2 className="text-lg font-semibold mt-6 mb-2">Alicatado</h2>
-          <div className="flex flex-wrap gap-2">
-            {materialesPorNivel[nivelSeleccionado].alicatado.map((opcion) => (
-              <button
-                key={opcion}
-                onClick={() => handleSeleccion("alicatado", opcion)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  selecciones.alicatado === opcion
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 hover:bg-gray-300"
-                }`}
-              >
-                {opcion}
-              </button>
-            ))}
-          </div>
-
-          <h2 className="text-lg font-semibold mt-6 mb-2">Plato de ducha</h2>
-          <div className="flex flex-wrap gap-2">
-            {materialesPorNivel[nivelSeleccionado].plato.map((opcion) => (
-              <button
-                key={opcion}
-                onClick={() => handleSeleccion("plato", opcion)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  selecciones.plato === opcion
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 hover:bg-gray-300"
-                }`}
-              >
-                {opcion}
-              </button>
-            ))}
-          </div>
-
-          <h2 className="text-lg font-semibold mt-6 mb-2">Medidas del baño</h2>
-          <div className="flex gap-4 mb-6">
-            <input
-              type="number"
-              placeholder="Longitud (m)"
-              value={longitud}
-              onChange={(e) => setLongitud(parseFloat(e.target.value))}
-              className="border rounded p-2 w-40"
-            />
-            <input
-              type="number"
-              placeholder="Anchura (m)"
-              value={anchura}
-              onChange={(e) => setAnchura(parseFloat(e.target.value))}
-              className="border rounded p-2 w-40"
-            />
-          </div>
-
-          <div className="bg-gray-100 p-4 rounded-xl">
-            <h3 className="text-lg font-semibold mb-2">Resumen:</h3>
-            <ul className="space-y-1">
-              <li><strong>Nivel:</strong> {nivelSeleccionado}</li>
-              {selecciones.alicatado && <li><strong>Alicatado:</strong> {selecciones.alicatado}</li>}
-              {selecciones.plato && <li><strong>Plato de ducha:</strong> {selecciones.plato}</li>}
-              <li><strong>Superficie:</strong> {superficie.toFixed(2)} m²</li>
-              <li><strong>Presupuesto estimado:</strong> {precio.toFixed(2)} €</li>
-            </ul>
-          </div>
-        </>
+      {nivel && (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4 text-center text-blue-700">
+            Personaliza tu baño nivel {nivel}
+          </h2>
+          {renderMateriales()}
+          {renderMedidas()}
+        </div>
       )}
     </div>
   );
