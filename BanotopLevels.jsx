@@ -50,17 +50,17 @@ const BanotopLevels = () => {
     },
   };
 
-  const superficie = medidas.longitud * medidas.anchura;
-  const base = 500;
-  const extraNivel = nivel ? niveles.indexOf(nivel) * 100 : 0;
-  const precio = superficie * (base + extraNivel);
-
   const imagenesNivel = {
     Esencial: "/esencial.jpg",
     Confort: "/confort.jpg",
     Premium: "/premium.jpg",
     Signature: "/signature.jpg",
   };
+
+  const superficie = medidas.longitud * medidas.anchura;
+  const base = 500;
+  const extraNivel = nivel ? niveles.indexOf(nivel) * 100 : 0;
+  const precio = superficie * (base + extraNivel);
 
   const handleSeleccion = (tipo, valor) => {
     setSeleccion((prev) => ({ ...prev, [tipo]: valor }));
@@ -159,6 +159,20 @@ const BanotopLevels = () => {
               🧮 Superficie: {superficie.toFixed(2)} m²<br />
               💰 Presupuesto estimado: {precio.toFixed(2)} €
             </p>
+          </div>
+
+          {/* Resumen de selección */}
+          <div className="bg-gray-100 mt-8 p-6 rounded-xl shadow">
+            <h2 className="text-lg font-semibold mb-4 text-blue-700">Resumen de tu selección:</h2>
+            <ul className="space-y-1 text-sm">
+              <li><strong>Nivel:</strong> {nivel}</li>
+              <li><strong>Alicatado:</strong> {seleccion.alicatado || "No seleccionado"}</li>
+              <li><strong>Solado:</strong> {seleccion.solado || "No seleccionado"}</li>
+              <li><strong>Plato de ducha:</strong> {seleccion.plato || "No seleccionado"}</li>
+              <li><strong>Mampara:</strong> {seleccion.mampara || "No seleccionado"}</li>
+              <li><strong>Mueble:</strong> {seleccion.mueble || "No seleccionado"}</li>
+              <li><strong>Espejo:</strong> {seleccion.espejo || "No seleccionado"}</li>
+            </ul>
           </div>
         </>
       )}
