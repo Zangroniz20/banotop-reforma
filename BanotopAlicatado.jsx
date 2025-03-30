@@ -5,24 +5,24 @@ const BanotopAlicatado = ({ nivel }) => {
 
   const opciones = {
     Esencial: [
-      { nombre: "Blanco brillo", imagen: "/alicatado-esencial-1.jpg" },
-      { nombre: "Beige texturizado", imagen: "/alicatado-esencial-2.jpg" },
-      { nombre: "Rosa pastel", imagen: "/alicatado-esencial-3.jpg" },
+      { nombre: "Blanco brillo", imagen: "alicatado-esencial-1.jpg" },
+      { nombre: "Beige texturizado", imagen: "alicatado-esencial-2.jpg" },
+      { nombre: "Rosa pastel", imagen: "alicatado-esencial-3.jpg" },
     ],
     Confort: [
-      { nombre: "Gris cemento", imagen: "/alicatado-confort-1.jpg" },
-      { nombre: "Decorado hojas", imagen: "/alicatado-confort-2.jpg" },
-      { nombre: "Rosa soft", imagen: "/alicatado-confort-3.jpg" },
+      { nombre: "Gris cemento", imagen: "alicatado-confort-1.jpg" },
+      { nombre: "Decorado hojas", imagen: "alicatado-confort-2.jpg" },
+      { nombre: "Rosa soft", imagen: "alicatado-confort-3.jpg" },
     ],
     Premium: [
-      { nombre: "Mármol claro", imagen: "/alicatado-premium-1.jpg" },
-      { nombre: "Textura vertical", imagen: "/alicatado-premium-2.jpg" },
-      { nombre: "Porcelánico beige", imagen: "/alicatado-premium-3.jpg" },
+      { nombre: "Mármol claro", imagen: "alicatado-premium-1.jpg" },
+      { nombre: "Textura vertical", imagen: "alicatado-premium-2.jpg" },
+      { nombre: "Porcelánico beige", imagen: "alicatado-premium-3.jpg" },
     ],
     Signature: [
-      { nombre: "Diseño exclusivo 1", imagen: "/alicatado-signature-1.jpg" },
-      { nombre: "Diseño exclusivo 2", imagen: "/alicatado-signature-2.jpg" },
-      { nombre: "Diseño exclusivo 3", imagen: "/alicatado-signature-3.jpg" },
+      { nombre: "Diseño exclusivo 1", imagen: "alicatado-signature-1.jpg" },
+      { nombre: "Diseño exclusivo 2", imagen: "alicatado-signature-2.jpg" },
+      { nombre: "Diseño exclusivo 3", imagen: "alicatado-signature-3.jpg" },
     ],
   };
 
