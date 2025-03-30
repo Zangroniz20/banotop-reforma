@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BanotopAlicatado from "./BanotopAlicatado";
 
 const BanotopLevels = () => {
   const [nivel, setNivel] = useState(null);
@@ -119,6 +120,14 @@ const BanotopLevels = () => {
                 />
               </div>
             ))}
+            {nivel && (
+  <BanotopAlicatado 
+    nivel={nivel} 
+    seleccion={seleccion} 
+    setSeleccion={setSeleccion} 
+  />
+)}
+
           </div>
         </>
       )}
