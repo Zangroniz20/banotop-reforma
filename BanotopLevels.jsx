@@ -120,13 +120,6 @@ const BanotopLevels = () => {
                 />
               </div>
             ))}
-            {nivel && (
-  <BanotopAlicatado 
-    nivel={nivel} 
-    seleccion={seleccion} 
-    setSeleccion={setSeleccion} 
-  />
-)}
 
           </div>
         </>
@@ -135,8 +128,15 @@ const BanotopLevels = () => {
       {nivel && (
         <>
           <h2 className="text-xl font-semibold mt-8 mb-4 text-center text-blue-700">
-            Has seleccionado el nivel <strong>{nivel}</strong>
-          </h2>
+  Has seleccionado el nivel <strong>{nivel}</strong>
+</h2>
+
+<BanotopAlicatado 
+  nivel={nivel} 
+  seleccion={seleccion} 
+  setSeleccion={setSeleccion} 
+/>
+
 
           {Object.entries(opcionesPorNivel[nivel]).map(([tipo, opciones]) =>
             renderOpciones(tipo, opciones)
