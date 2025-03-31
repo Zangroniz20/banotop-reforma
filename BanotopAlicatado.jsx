@@ -51,7 +51,7 @@ const BanotopAlicatado = ({ nivel }) => {
             <img
               src={mat.imagen}
               alt={mat.nombre}
-              className="w-full h-auto rounded-md"
+              className="w-[150px] h-auto rounded-md"
             />
             <p className="text-center mt-2 font-medium">{mat.nombre}</p>
           </div>
