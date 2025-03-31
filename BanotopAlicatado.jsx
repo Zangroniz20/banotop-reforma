@@ -48,11 +48,14 @@ const BanotopAlicatado = ({ nivel }) => {
                 : "border-transparent"
             }`}
           >
-            <img
-              src={mat.imagen}
-              alt={mat.nombre}
-              className="w-[50px] h-[50px] object-cover mx-auto rounded-md"
-            />
+            <div className="w-[120px] h-[120px] mx-auto">
+  <img
+    src={mat.imagen}
+    alt={mat.nombre}
+    className="w-full h-full object-cover rounded-md"
+  />
+</div>
+
             <p className="text-center mt-2 font-medium">{mat.nombre}</p>
           </div>
         ))}
