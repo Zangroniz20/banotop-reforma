@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const BanotopAlicatado = ({ nivel }) => {
   const [seleccionado, setSeleccionado] = useState(null);
+
+  useEffect(() => {
+    setSeleccionado(null); // Reinicia selección al cambiar de nivel
+  }, [nivel]);
 
   const opciones = {
     Esencial: [
@@ -27,6 +31,8 @@ const BanotopAlicatado = ({ nivel }) => {
   };
 
   const materiales = opciones[nivel] || [];
+
+  if (!nivel) return null; // No mostrar nada si no hay nivel seleccionado
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
